@@ -20,6 +20,7 @@ include registers.fs
 include ports.fs
 
 : setup ( -- )
+	PA4.SET
 	." Started. Press key to stop..."
 	CR
 ;
