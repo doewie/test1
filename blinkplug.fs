@@ -28,7 +28,7 @@ include version.fs
 ;
 
 : main ( -- )
-	ver           					\ show version
+	ver.           					\ show version
 	setup
 	mainloop						\ start main loop
 ;
