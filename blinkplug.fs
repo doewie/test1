@@ -16,6 +16,7 @@ reset
 
 \ include application specific source files
 include version.fs
+include registers.fs
 
 : setup ( -- )
 	." Started. Press key to stop..."
