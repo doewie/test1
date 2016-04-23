@@ -19,24 +19,24 @@ include version.fs
 include registers.fs
 include ports.fs
 
-: setup ( -- )
+: SETUP ( -- )
 	PA4.SET
 	." Started. Press key to stop..."
 	CR
 ;
 
-: mainloop ( -- ) 			\ endless loop until key pressed
+: MAINLOOP ( -- ) 			\ endless loop until key pressed
 	begin 
-		1000 ms				\ wait 1 second
+		1000 MS				\ wait 1 second
 		PA4.				\ report input on PA4
-		key? 				\ repeat until key pressed
+		KEY? 				\ repeat until key pressed
 	until
 ;
 
-: main ( -- )
-	ver.           					\ show version
-	setup
-	mainloop						\ start main loop
+: MAIN ( -- )
+	VER.           					\ show version
+	SETUP
+	MAINLOOP						\ start main loop
 ;
 
 

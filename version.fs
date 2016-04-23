@@ -1,7 +1,7 @@
 \ define version string
 \ TODO: let git change the content of this file.
 
-: ver. ( -- )  \ output version info
+: VER. ( -- )  \ output version info
 	CR CR
 	." **********************" CR
 	." * name   : BlinkPlug *" CR
