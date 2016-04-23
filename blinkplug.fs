@@ -17,14 +17,18 @@ reset
 \ include application specific source files
 include version.fs
 include registers.fs
+include ports.fs
 
 : setup ( -- )
 	." Started. Press key to stop..."
+	CR
 ;
 
 : mainloop ( -- ) 			\ endless loop until key pressed
 	begin 
-		key? 
+		1000 ms				\ wait 1 second
+		PA4.				\ report input on PA4
+		key? 				\ repeat until key pressed
 	until
 ;
 
@@ -33,3 +37,7 @@ include registers.fs
 	setup
 	mainloop						\ start main loop
 ;
+
+
+
+
