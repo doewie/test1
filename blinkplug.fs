@@ -20,23 +20,24 @@ include registers.fs
 include ports.fs
 
 : SETUP ( -- )
-	PA4.SET
-	." Started. Press key to stop..."
+	VER.           				\ show version
+	PA4.SET						\ set PA4 input, pullup
+	." Press key to stop..."
 	CR
 ;
 
-: MAINLOOP ( -- ) 			\ endless loop until key pressed
+: MAINLOOP ( -- ) 				\ endless loop until key pressed
 	begin 
-		1000 MS				\ wait 1 second
-		PA4.				\ report input on PA4
-		KEY? 				\ repeat until key pressed
+		1000 MS					\ wait 1 second
+		PA4@					\ get inputvalue on PA4
+		. CR					\ report input value on PA4
+		KEY? 					\ repeat until key pressed
 	until
 ;
 
 : MAIN ( -- )
-	VER.           					\ show version
 	SETUP
-	MAINLOOP						\ start main loop
+	MAINLOOP
 ;
 
 
