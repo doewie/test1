@@ -19,8 +19,8 @@
 	18 bit GPIOA.CRL bic!	\ reset bit 18
 	19 bit GPIOA.CRL bis!	\ set bit 19
 	
-	\ enable pullup by setting bit 3 in GPIOA.ODR
-	\ use the GPIOA.BSRR register to use atomic (re)setting
+	\ enable pullup by setting bit 4 ( ODR4 ) in GPIOA.ODR
+	\ set via the GPIOA.BSRR register to use atomic (re)setting
 	4 bit GPIOA.BSRR bis!	\ set bit 4
 ;
 
