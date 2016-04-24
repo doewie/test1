@@ -5,7 +5,7 @@
 	CR CR
 	." **********************" CR
 	." * name   : BlinkPlug *" CR
-	." * version: 0.1       *" CR
+	." * version: 0.2       *" CR
 	." **********************" CR
 	CR
 ;
