@@ -3,6 +3,12 @@
 \ port handling for project BlinkPlug
 \
 \ needs registers.fs
+\
+\
+\ interesting articles about port settings:
+\ http://www.scriptoriumdesigns.com/embedded/gpio_in.php
+\
+\
 
 : PA4.SET ( -- ) \ set PA4 to input with pullup
 	\ PA4 set in GPIOA.CRL
