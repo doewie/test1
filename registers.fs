@@ -16,3 +16,34 @@ $40010800 constant GPIOA-BASE
 	GPIOA-BASE $14 + constant GPIOA.BRR   	\ reset 0			port Bit Reset Register
 
 
+\ Alternate Functions IO register (AFIO)
+
+\	$40010000 constant AFIO 				\ Already defined in flib\hal-stm32f1.fs
+
+	AFIO $08 + constant AFIO.EXTICR1		\ External Interrupt Configuration Register 1 for EXTI0 .. EXTI3
+	AFIO $0C + constant AFIO.EXTICR2		\ External Interrupt Configuration Register 1 for EXTI4 .. EXTI7
+	AFIO $10 + constant AFIO.EXTICR3		\ External Interrupt Configuration Register 1 for EXTI8 .. EXTI11
+	AFIO $14 + constant AFIO.EXTICR4		\ External Interrupt Configuration Register 1 for EXTI2 .. EXTI15
+
+\ Reset and Clock Control register (RCC)
+
+\	$40021000 constant RCC					\ Already defined in flib\hal-stm32f1.fs
+
+	RCC $00 + constant RCC.CR				\ Clock Control Register
+	RCC $04 + constant RCC.CFGR				\ Clock Configuration Register
+	RCC $10 + constant RCC.APB1RSTR			\ APB1 Peripheral Reset Register
+	RCC $14 + constant RCC.AHBENR			\ AHB Peripheral Clock Enable Register
+	RCC $18 + constant RCC.APB2ENR			\ AHB2 Peripheral Clock Enable Register
+	RCC $1C + constant RCC.APB1ENR			\ AHB1 Peripheral Clock Enable Register
+ 
+\ EXTernal Interrupt/event register (EXTI)
+
+	$40010400 constant EXTI-BASE
+	
+	EXTI-BASE $00 + constant EXTI.IMR		\ Interrupt Mask Register
+	EXTI-BASE $04 + constant EXTI.EMR		\ Event Mask Register
+	EXTI-BASE $08 + constant EXTI.RTSR		\ Rising Trigger Selection Register
+	EXTI-BASE $0C + constant EXTI.FTSR		\ Falling Trigger Selection Register
+	EXTI-BASE $10 + constant EXTI.SWIER		\ Software Interrupt Event Register	
+	EXTI-BASE $14 + constant EXTI.PR		\ Pending Register
+
