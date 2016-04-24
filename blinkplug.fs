@@ -18,19 +18,18 @@ reset
 include version.fs
 include registers.fs
 include ports.fs
+include interrupt.fs
 
 : SETUP ( -- )
 	VER.           				\ show version
 	PA4.SET						\ set PA4 input, pullup
+	SETUP.INT					\ setup interrupt handling on PA4
 	." Press key to stop..."
 	CR
 ;
 
 : MAINLOOP ( -- ) 				\ endless loop until key pressed
 	begin 
-		1000 MS					\ wait 1 second
-		PA4@					\ get inputvalue on PA4
-		. CR					\ report input value on PA4
 		KEY? 					\ repeat until key pressed
 	until
 ;
