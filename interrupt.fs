@@ -14,16 +14,6 @@
 \  Interrupt controller tools
 \ ---------------------------
 \ -
-\ Nested Vector Interrupt Controller (NVIC)
-
-$E000E100 constant NVIC				\ base
-
-	NVIC $00 + constant NVIC.ISER0	\ Interrupt Set Enable ( # 00..31 )
-	NVIC $04 + constant NVIC.ISER1	\ Interrupt Set Enable ( # 32..63 )
-
-	NVIC $80 + constant NVIC.ICER0	\ Interrupt Clear Enable ( # 00..31 )
-	NVIC $80 + constant NVIC.ICER1	\ Interrupt Clear Enable ( # 32..63 )
-	
 
 \ $E000E100 constant en0 ( Interrupt Set Enable  0-31  )
 \ $E000E104 constant en1 ( Interrupt Set Enable 32-63  )
