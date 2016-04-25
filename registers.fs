@@ -2,9 +2,8 @@
 \
 \ register definitions for the BlinkPlug project.
 \
-\
 
-\ GPIOA registers
+\ General Purpose I/O register (GPIO)
 
 $40010800 constant GPIOA-BASE
 
@@ -15,8 +14,7 @@ $40010800 constant GPIOA-BASE
 	GPIOA-BASE $10 + constant GPIOA.BSRR  	\ reset 0			port Bit Set/Reset Reg
 	GPIOA-BASE $14 + constant GPIOA.BRR   	\ reset 0			port Bit Reset Register
 
-
-\ Alternate Functions IO register (AFIO)
+\ Alternate Functions I/O register (AFIO)
 
 \	$40010000 constant AFIO 				\ Already defined in flib\hal-stm32f1.fs
 

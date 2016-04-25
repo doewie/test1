@@ -1,30 +1,8 @@
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\ interrupt.fs
 \
-\ interupt setting and handling
+\ interupt setting and handling for project BlinkPlug
 \
-\ also re tutorial on http://embedded-lab.com/blog/stm32-external-interrupt/
 \
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-
-\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-\ NVIC tools
-
-
-\ ----------------------------
-\  Interrupt controller tools
-\ ---------------------------
-\ -
-
-\ $E000E100 constant en0 ( Interrupt Set Enable  0-31  )
-\ $E000E104 constant en1 ( Interrupt Set Enable 32-63  )
-\ $E000E108 constant en2 ( Interrupt Set Enable 64-95  )
-\ $E000E10C constant en3 ( Interrupt Set Enable 96-127 )
-
-\ $E000E180 constant dis0 ( Interrupt Clear Enable  0-31  )
-\ $E000E184 constant dis1 ( Interrupt Clear Enable 32-63  )
-\ $E000E188 constant dis2 ( Interrupt Clear Enable 64-95  )
-\ $E000E18C constant dis3 ( Interrupt Clear Enable 96-127 )
-
 
 \ : nvic-enable ( irq# -- )
 \   16 - \ Cortex Core Vectors
@@ -53,8 +31,7 @@
 	\ set bit 10 in EXTI.PR to re-enable interrupt no. 10 ( EXTI1 )
 	\ this is the position # in table 63, page 203 of the STM32F1 manual. 
 	\ for interrupt # 10
-	10 bit EXTI.PR bis!
-	
+	10 bit EXTI.PR bis!	
 ;
 
 : SETUP.INT \ setup handling of interrupt on PA4
