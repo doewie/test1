@@ -24,12 +24,13 @@
 \   $E000E400 + c!
 \ ;
 
-0 VARIABLE EXTI4.FLAG		\ will be set on interrupt EXTI4
-0 VARIABLE COUNT.INT        \ count # of interrupts
-0 VARIABLE COUNT.HANDLING   \ count # of interrupt handlings
+0 VARIABLE EXTI4.FLAG			\ will be set on interrupt EXTI4
+0 VARIABLE COUNT.INT        	\ count # of interrupts
+0 VARIABLE COUNT.HANDLING   	\ count # of interrupt handlings
+100 VARIABLE DEBOUNCE.DELAY		\ delay for debounce wait
 
-: HANDLE.BUTTON				\ handling of the interrupt on EXTI1
-	COUNT.HANDLING @ 1+		\ incr. COUNT.HANDLING
+: HANDLE.BUTTON					\ handling of the interrupt on EXTI1
+	COUNT.HANDLING @ 1+			\ incr. COUNT.HANDLING
 	COUNT.HANDLING !
 	
 	COUNT.HANDLING @ 10 = if	\ print and reset counters every 10 handlings
@@ -41,16 +42,15 @@
 		0 COUNT.HANDLING !
 	then
 	
-	\ ." 1" CR				\ display x on every interrupt
-	100 ms 					\ debounce button for 100 ms
-	0 EXTI4.FLAG !			\ reset the interrupt flag after handling
+	DEBOUNCE.DELAY @ ms			\ wait for debounce button
+	0 EXTI4.FLAG !				\ reset the interrupt flag after handling
 ;
 
 : EXTI4.HANDLE ( -- )
-	COUNT.INT @ 1+			\ incr. COUNT.INT
+	COUNT.INT @ 1+				\ incr. COUNT.INT
 	COUNT.INT !
-	1 EXTI4.FLAG !			\ set flag for interrupt handling
-	
+	1 EXTI4.FLAG !				\ set flag for interrupt handling
+
 	\ set bit 10 in EXTI.PR to re-enable interrupt no. 10 ( EXTI1 )
 	\ this is the position # in table 63, page 203 of the STM32F1 manual. 
 	\ for interrupt # 10
