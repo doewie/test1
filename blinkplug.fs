@@ -30,6 +30,8 @@ include interrupt.fs
 
 : MAINLOOP ( -- ) 				\ endless loop until key pressed
 	begin 
+		EXTI4.FLAG @ 1 = if HANDLE.BUTTON then
+								
 		KEY? 					\ repeat until key pressed
 	until
 ;

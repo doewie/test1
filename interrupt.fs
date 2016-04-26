@@ -24,9 +24,16 @@
 \   $E000E400 + c!
 \ ;
 
+0 VARIABLE EXTI4.FLAG		\ will be set on interrupt EXTI4
 
-: HANDLE.INT	\ handling of the interrupt on EXTI1
-	." x" CR	\ display x on every interrupt
+: HANDLE.BUTTON				\ handling of the interrupt on EXTI1
+	." 1" CR				\ display x on every interrupt
+	100 ms 					\ debounce button for 100 ms
+	0 EXTI4.FLAG !			\ reset the interrupt flag after handling
+;
+
+: EXTI4.HANDLE ( -- )
+	1 EXTI4.FLAG !			\ set flag for interrupt handling
 	
 	\ set bit 10 in EXTI.PR to re-enable interrupt no. 10 ( EXTI1 )
 	\ this is the position # in table 63, page 203 of the STM32F1 manual. 
@@ -47,8 +54,8 @@
 	\ Select falling edge interrupt on EXTI4	
 	4 bit EXTI.FTSR bis!		\ set bit 4 (= TR4 )
 	
-	\ set vector of interrupt handling HANDLE.INT to irq-exti4
-	['] HANDLE.INT irq-exti4 ! \ address of interrupthandling to vector table
+	\ set vector of interrupt handling HANDLE.EXTI4 to irq-exti4
+	['] EXTI4.HANDLE irq-exti4 ! \ address of interrupthandling to vector table
 	
 	\ enable interrupt in the mask register
 	4 bit EXTI.IMR bis!			\ set bit 4
