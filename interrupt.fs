@@ -32,11 +32,15 @@
 : HANDLE.BUTTON					\ handling of the interrupt on EXTI1
 	COUNT.HANDLING @ 1+			\ incr. COUNT.HANDLING
 	COUNT.HANDLING !
+
+	." * "						\ display '*' every button press
 	
 	COUNT.HANDLING @ 10 >= if	\ print and reset counters every 10 handlings
-		COUNT.INT @ .
-		."  - "
+		."   "
 		COUNT.HANDLING @ .
+		."  out of "
+		COUNT.INT @ .
+		
 		CR
 		0 COUNT.INT !
 		0 COUNT.HANDLING !
