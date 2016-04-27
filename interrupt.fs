@@ -33,7 +33,7 @@
 	COUNT.HANDLING @ 1+			\ incr. COUNT.HANDLING
 	COUNT.HANDLING !
 	
-	COUNT.HANDLING @ 10 = if	\ print and reset counters every 10 handlings
+	COUNT.HANDLING @ 10 >= if	\ print and reset counters every 10 handlings
 		COUNT.INT @ .
 		."  - "
 		COUNT.HANDLING @ .
