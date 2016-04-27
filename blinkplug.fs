@@ -15,29 +15,35 @@
 reset
 
 \ include application specific source files
-include version.fs
 include registers.fs
 include ports.fs
 include interrupt.fs
+include version.fs
 
-: SETUP ( -- )
-	VER.           				\ show version
+: SETUP ( delay -- )			\ delay = debouncing delay
+	DEBOUNCE.DELAY !			\ set flag DEBOUNCE.DELAY
 	PA4.SET						\ set PA4 input, pullup
 	SETUP.INT					\ setup interrupt handling on PA4
-	." Press key to stop..."
-	CR
 ;
 
 : MAINLOOP ( -- ) 				\ endless loop until key pressed
 	begin 
-		EXTI4.FLAG @ 1 = if HANDLE.BUTTON then
-								
+		EXTI4.FLAG @ 1 = if   	
+			HANDLE.BUTTON		\ handle button if EXTI.FLAG set
+		then								
 		KEY? 					\ repeat until key pressed
 	until
 ;
 
-: MAIN ( -- )
+/ start with 'u main' u = debouncing delay
+: MAIN ( delay -- )				\ delay = debouncing delay
 	SETUP
+	
+	VER.           				\ show version
+	
+	CR	." Press key to stop..."
+	CR
+	
 	MAINLOOP
 ;
 

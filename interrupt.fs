@@ -27,7 +27,7 @@
 0 VARIABLE EXTI4.FLAG			\ will be set on interrupt EXTI4
 0 VARIABLE COUNT.INT        	\ count # of interrupts
 0 VARIABLE COUNT.HANDLING   	\ count # of interrupt handlings
-100 VARIABLE DEBOUNCE.DELAY		\ delay for debounce wait
+0 VARIABLE DEBOUNCE.DELAY		\ delay for debounce wait
 
 : HANDLE.BUTTON					\ handling of the interrupt on EXTI1
 	COUNT.HANDLING @ 1+			\ incr. COUNT.HANDLING
