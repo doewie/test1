@@ -1,0 +1,38 @@
+revision 0.1 define input port
+
+note 1: port selection
+
+As the SPI-interface will not be used for this project the ports PA4..PA7 are free for testing
+
+note 2: LED1 Green
+
+Connected to BlinkPlug pin DIO
+Connected to STM32F1xx pin PA4 as input
+
+To avoid short circuits, the input pin must be configured with pull-up
+
+input: CNF = %10, MODE = %00
+pull-up: GPIOA.ODR set bit 4 (ODR4)
+
+
+note 3: LED2 Red (NOT YET CONNECTED)
+
+Connected to BlinkPlug pin AIO
+Connected to STM32F1xx pin PA5 as output.
+
+To avoid short circuits, the ouput pin must be configured as 0-level output, but never as 1-level output.
+ 
+revision 0.2 define interrupt on input port
+
+note 4: design notes
+
+Interrupt on PA4, so settings to be for EXTI4 ( irq-exti4)
+This is interrupt EXTI4 on positions 10 ( re. Table63 ) of the STM32F1 manual
+
+note 5: interrupt tutorials
+
+also re a.o. tutorials on 
+http://embedded-lab.com/blog/stm32-external-interrupt/
+http://www.scriptoriumdesigns.com/embedded/interrupts.php
+
+revision 0.3 set flag in HANDLE.INT, handle in MAINLOOP
